@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'lgcon/CSS/Home.css' %}?after ">
+    <title>진동벨 키오스크 UI</title>
+</head>
+
+<body>
+    <script src= "{% static 'lgcon/JS/main.js' %}" ></script>
+
+    <div class="kiosk_simulation">  
+
+        <div class="kiosk_mega_backdround">
+
+            <div class="kiosc_mega_screen">
+                
+
+                <div id="mega_start_img">
+                    <button id="mega_start_btn" onclick="start_btn()"></button>
+                </div>
+
+
+                <div id="mega_order">
+                    <div id="top_bar">
+                        <div id="mega_top_bar_home" onclick="herf_home()"></div>
+                        <div id="mega_top_bar_name">상명대학교 키오스크</div>
+                        <div id="mega_top_bar_lang">LANG</div>
+                        <!-- <div>{{menu}}</div> -->
+                        
+                    </div>
+
+                    <div id="mega_menu_bar">
+                        <div id="menu_bar_left" onclick="turn_menu_page(this.id)">&#60;</div>
+
+                        <div class="mega_menu_1 ca"  title="추천_음료" onclick="open_menu_table(this.title); handleClick(event);">추천(음료)</div>
+                        <div class="mega_menu_1 ca" title="추천_디저트" onclick="open_menu_table(this.title); handleClick(event);">추천(디저트)</div>
+                        <div class="mega_menu_1 ca" title="커피_HOT" onclick="open_menu_table(this.title); handleClick(event);">커피(HOT)</div>
+                        <div class="mega_menu_1 ca" title="커피_ICE" onclick="open_menu_table(this.title); handleClick(event);">커피(ICE)</div>
+
+
+                        <div class="mega_menu_2 ca"  title="스무디_프라페" onclick="open_menu_table(this.title); handleClick(event);">스무디&프라페</div>
+                        <div class="mega_menu_2 ca" title="에이드_주스" onclick="open_menu_table(this.title); handleClick(event);">에이드&주스</div>
+                        <div class="mega_menu_2 ca" title="Tea" onclick="open_menu_table(this.title); handleClick(event);">Tea</div>
+                        <div class="mega_menu_2 ca" title="커피_콜드브루" onclick="open_menu_table(this.title); handleClick(event);">커피(콜드브루)</div>
+
+                        <div class="mega_menu_3 ca"  title="Beverage" onclick="open_menu_table(this.title); handleClick(event);">Beverage</div>
+                        <div class="mega_menu_3 ca" title="디저트" onclick="open_menu_table(this.title); handleClick(event);">디저트</div>
+                        <div class="mega_menu_3" >    </div>
+                        <div class="mega_menu_3" >    </div>
+                        <div id="menu_bar_right" onclick="turn_menu_page(this.id)">></div>
+                    </div>
+                    
+                </div>
+
+                
+                <div id="mega_menu_table">
+                    <div id="right_btn">></div>
+                    <div id="left_btn">&#60;</div>
+
+                    <div id="추천_음료" class="p1">
+                        {% for i in menu %}
+                            {% for category in i.categories.all %}
+                                {% if category.category_name == "추천(음료)" %}
+                                    {% cycle '<div id="row">' '' '' '' %}
+                                    <div id="{{ i.name }}" title="{{ i.title }}" data-price="{{ i.price }}"
+                                         onclick="option(this.id, this.title, this.dataset.price)">
+                                        {% if i.menu_image %}
+                                            <img src="{{ i.menu_image.url }}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% else %}
+                                            <img src="{% static '/menu_image' %}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% endif %}
+                                    </div>
+                                    {% cycle '' '' '' '</div>' %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                    
+                    <div id="추천_음료_p2" class="p2">
+                        <div id="row">
+                            <div id="ice_흑당버블그린티라떼" title="no_option" data-price="3800"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_흑당버블밀크티라떼" title="no_option" data-price="3800"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_흑당라떼" title="no_option" data-price="3000"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div></div>
+                        </div>
+                    </div>
+
+
+                    <div id="추천_디저트">
+
+                    </div>
+
+
+                    <div id="커피_HOT">
+                        {% for i in menu %}
+                            {% for category in i.categories.all %}
+                                {% if category.category_name == "커피(HOT)" %}
+                                    {% cycle '<div id="row">' '' '' '' %}
+                                    <div id="{{ i.name }}" title="{{ i.title }}" data-price="{{ i.price }}"
+                                         onclick="option(this.id, this.title, this.dataset.price)">
+                                        {% if i.menu_image %}
+                                            <img src="{{ i.menu_image.url }}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% else %}
+                                            <img src="{% static '/menu_image' %}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% endif %}
+                                    </div>
+                                    {% cycle '' '' '' '</div>' %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+
+                    <div id="커피_ICE">
+                        {% for i in menu %}
+                            {% for category in i.categories.all %}
+                                {% if category.category_name == "커피(ICE)" %}
+                                    {% cycle '<div id="row">' '' '' '' %}
+                                    <div id="{{ i.name }}" title="{{ i.title }}" data-price="{{ i.price }}"
+                                         onclick="option(this.id, this.title, this.dataset.price)">
+                                        {% if i.menu_image %}
+                                            <img src="{{ i.menu_image.url }}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% else %}
+                                            <img src="{% static '/menu_image' %}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% endif %}
+                                    </div>
+                                    {% cycle '' '' '' '</div>' %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+
+                    <div id="스무디_프라페">
+                        {% for i in menu %}
+                            {% for category in i.categories.all %}
+                                {% if category.category_name == "스무디&프라페" %}
+                                    {% cycle '<div id="row">' '' '' '' %}
+                                    <div id="{{ i.name }}" title="{{ i.title }}" data-price="{{ i.price }}"
+                                         onclick="option(this.id, this.title, this.dataset.price)">
+                                        {% if i.menu_image %}
+                                            <img src="{{ i.menu_image.url }}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% else %}
+                                            <img src="{% static '/menu_image' %}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% endif %}
+                                    </div>
+                                    {% cycle '' '' '' '</div>' %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <div id="스무디_프라페_p2">
+                        <div id="row">
+                            <div id="딸기요거트스무디" title="no_option" data-price="3900"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="망고요거트스무디" title="no_option" data-price="3900"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+
+                    <div id="에이드_주스">
+                        {% for i in menu %}
+                            {% for category in i.categories.all %}
+                                {% if category.category_name == "에이드&주스" %}
+                                    {% cycle '<div id="row">' '' '' '' %}
+                                    <div id="{{ i.name }}" title="{{ i.title }}" data-price="{{ i.price }}"
+                                         onclick="option(this.id, this.title, this.dataset.price)">
+                                        {% if i.menu_image %}
+                                            <img src="{{ i.menu_image.url }}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% else %}
+                                            <img src="{% static '/menu_image' %}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% endif %}
+                                    </div>
+                                    {% cycle '' '' '' '</div>' %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <div id="에이드_주스_p2">
+                        <div id="row">
+                            <div id="초코바나나주스" title="no_option" data-price="3800"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="오곡바나나주스" title="no_option" data-price="3800"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="딸기바나나주스" title="no_option" data-price="3800"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div></div>
+                        </div>
+                    </div>
+
+                    <div id="Tea">
+                        {% for i in menu %}
+                            {% for category in i.categories.all %}
+                                {% if category.category_name == "Tea" %}
+                                    {% cycle '<div id="row">' '' '' '' %}
+                                    <div id="{{ i.name }}" title="{{ i.title }}" data-price="{{ i.price }}"
+                                         onclick="option(this.id, this.title, this.dataset.price)">
+                                        {% if i.menu_image %}
+                                            <img src="{{ i.menu_image.url }}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% else %}
+                                            <img src="{% static '/menu_image' %}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% endif %}
+                                    </div>
+                                    {% cycle '' '' '' '</div>' %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+
+                    <div id="Tea_p2">
+                        <div id="row">
+                            <div id="ice_얼그레이" title="no_option" data-price="2500"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_허니자몽블랙티" title="no_option" data-price="3500"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_레몬차" title="no_option" data-price="3000"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_자몽차" title="no_option" data-price="3000"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                        </div>
+                        <div id="row">
+                            <div id="ice_유자차" title="no_option" data-price="3000"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_사과유자차" title="no_option" data-price="3500"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="복숭아아이스티" title="no_option" data-price="3000"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div></div>
+                        </div>
+                    </div>
+
+                    <div id="커피_콜드브루">
+                        {% for i in menu %}
+                            {% for category in i.categories.all %}
+                                {% if category.category_name == "커피(콜드브루)" %}
+                                    {% cycle '<div id="row">' '' '' '' %}
+                                    <div id="{{ i.name }}" title="{{ i.title }}" data-price="{{ i.price }}"
+                                         onclick="option(this.id, this.title, this.dataset.price)">
+                                        {% if i.menu_image %}
+                                            <img src="{{ i.menu_image.url }}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% else %}
+                                            <img src="{% static '/menu_image' %}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% endif %}
+                                    </div>
+                                    {% cycle '' '' '' '</div>' %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+
+                    <div id="Beverage">
+                        {% for i in menu %}
+                            {% for category in i.categories.all %}
+                                {% if category.category_name == "Beverage" %}
+                                    {% cycle '<div id="row">' '' '' '' %}
+                                    <div id="{{ i.name }}" title="{{ i.title }}" data-price="{{ i.price }}"
+                                         onclick="option(this.id, this.title, this.dataset.price)">
+                                        {% if i.menu_image %}
+                                            <img src="{{ i.menu_image.url }}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% else %}
+                                            <img src="{% static '/menu_image' %}" alt="{{ i.name }}" style="width: 100%; height: 100%;">
+                                        {% endif %}
+                                    </div>
+                                    {% cycle '' '' '' '</div>' %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <div id="Beverage_2p">
+                        <div id="row">
+                            <div id="ice_고구마라떼" title="no_option" data-price="3500"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_곡물라떼" title="no_option" data-price="3000"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_로얄밀크티라떼" title="no_option" data-price="3500"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_오레오초코라떼" title="no_option" data-price="3900"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                        </div>
+                        <div id="row">
+                            <div id="hot_토피넛라떼" title="no_option" data-price="3800"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div id="ice_토피넛라떼" title="no_option" data-price="3800"
+                                onclick="option(this.id, this.title, this.dataset.price)"></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+
+                    <div id="디저트"></div>
+
+                </div>
+
+
+                <div id="nextpage">
+                    <div id="first_page"></div>
+                    <div id="second_page"></div>
+                </div>
+
+
+                <div id="pay">
+                    <div id="order_lsit">
+                        <!-- JavaScript를 통해 아이템 리스트가 여기에 추가됩니다. -->
+                    </div>
+                
+                    <div id="order_list_right">
+                        <div id="pay_right">
+                            <div id="rest_time">남은시간<br>초</div>
+                        </div>
+                        <div id="item_number">_________________________<br>선택한 상품</div>
+                        <div id="pay_btn">
+                            <div id="card_img"></div>
+                            <div id="total_price" onclick="open_window_pay()">0원<br>결제하기</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    const orderListDiv = document.getElementById('order_lsit');  // order_list -> order_lsit으로 수정
+                
+                    for (let i = 0; i < 20; i++) {
+                        const orderDiv = document.createElement('div');
+                        orderDiv.id = `order_${i + 1}`;
+                        orderDiv.className = 'cart';
+                
+                        // 내부 div 생성
+                        orderDiv.innerHTML = `
+                            <div id="delete_${i + 1}" onclick="deleteItem(${i})">X</div>
+                            <div id="range_${i + 1}"></div>
+                            <div id="minus" onclick="decreaseQuantity(${i})">ㅡ</div>
+                            <div id="amount_${i + 1}"></div>
+                            <div id="plus" onclick="increaseQuantity(${i})">+</div>
+                            <div id="item_price_${i + 1}"></div>
+                        `;
+                
+                        // 부모 요소에 추가
+                        orderListDiv.appendChild(orderDiv);
+                    }
+                </script>
+
+
+                <div id="insert_card_moving" onclick="결제완료()"></div>
+
+                <div id="screen_to_window_pay"></div>
+
+                <div id="window_pay">
+                    <div id="window_top">
+                        <div>주문 세부내역을 다시 한번 확인하여 주세요</div>
+                        <div onclick="close_window_pay()">X</div>
+                    </div>
+
+                    <div id="window_order_list"></div>
+
+                        <script>
+                            const container = document.getElementById('window_order_list');
+
+                            for (let i = 1; i <= 20; i++) {
+                                const windowDiv = document.createElement('div');
+                                windowDiv.id = `window_${i}`;
+
+                                const orderDiv = document.createElement('div');
+                                orderDiv.id = `w_order_${i}`;
+
+                                const numberDiv = document.createElement('div');
+                                numberDiv.id = `w_number_${i}`;
+
+                                windowDiv.appendChild(orderDiv);
+                                windowDiv.appendChild(numberDiv);
+
+                                container.appendChild(windowDiv);
+                            }
+                        </script>
+                    <div id="window_num_price">
+                        <div id="window_num">
+                            <div>총 수량 &nbsp;</div>
+                            <div id="w_total_number" class="ex_css"></div>
+                            <div>개</div>
+                        </div>
+                        <div id="window_price">
+                            <div>총 결제금액 &nbsp;</div>
+                            <div id="w_total_price" class="ex_css">sd</div>
+                            <div>원</div>
+                        </div>
+                    </div>
+                    <div id="window_bottom">
+                        <div id="돌아가기" onclick="close_window_pay()">←<br>돌아가기</div>
+                        <div id="먹고가기" onclick="change_window_btn()"><br>먹고가기</div>
+                        <div id="가져가기" onclick="change_window_btn()"><br>가져가기</div>
+
+                        <div id="돌아가기_2" onclick="back_2_window_btn()">←<br>돌아가기</div>
+                        <div id="쿠폰사용">
+                            <div id="coupon"></div>
+                            <div><br>쿠폰사용</div>
+                        </div>
+                        <div id="페이코">PAYCO<br>페이코</div>
+                        <div id="카드결제" onclick="open_w_카드결제()"><br>카드결제</div>
+
+                    </div>
+
+                </div>
+
+                <div id="포인트적립"> </div>
+
+                <div id="w_카드결제">
+                    <div id="w_카드결제_top">
+                        <div>카드 결제</div>
+                        <div onclick="close_w_카드결제()">X</div>
+                    </div>
+                    <div id="w_block">
+                        <div>다음 그림과 같이 신용/체크카드를 넣어주세요</div>
+                        <div id="insert_card_w"></div>
+                    </div>
+                    <div id="w_list">
+                        <div id="w_list_1">
+                            <div>총 결제금액</div>
+                            <div id="w_카드결제_total_price">sd</div>
+                        </div>
+                        <div>
+                            <div>할부개월</div>
+                            <div >일시불</div>
+                        </div>
+                        <div id="w_list_1">
+                            <div>카드번호</div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div id="w_bottom">
+                        <div id="취소" onclick="close_w_카드결제()">취소</div>
+                        <div id="승인요청"> 승인요청</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+</body>
+
+</html>
