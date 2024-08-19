@@ -401,8 +401,20 @@ function 결제완료() {
     location.href = "http://127.0.0.1:8000/1";
 }
 
-function herf_home() {
-    location.href = "http://127.0.0.1:8000/1";
+function herf_home(element) {
+    if (!element) {
+        console.error('Element is not defined.');
+        return;
+    }
+    
+    var bell_num = element.getAttribute('bell_num');
+    if (!bell_num) {
+        console.error('bell_num attribute is not found.');
+        return;
+    }
+
+    var url = "http://127.0.0.1:8000/" + encodeURIComponent(bell_num);
+    location.href = url;
 }
 
 
