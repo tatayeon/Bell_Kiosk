@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'lgcon/CSS/Home.css' %}?after ">
-    <title>진동벨 키오스크 UI</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <title>진동벨 키오스크 UI___</title>
 </head>
 
 <body>
     <script src= "{% static 'lgcon/JS/main.js' %}" ></script>
+    <script src= "{% static 'lgcon/JS/pay.js' %}" ></script>
 
     <div class="kiosk_simulation">  
 
@@ -398,7 +401,7 @@
                             <div id="coupon"></div>
                             <div><br>쿠폰사용</div>
                         </div>
-                        <div id="페이코">PAYCO<br>페이코</div>
+                        <div id="간편결제" onclick="open_w_간편결제()"><br>간편결제</div>
                         <div id="카드결제" onclick="open_w_카드결제()"><br>카드결제</div>
 
                     </div>
@@ -406,6 +409,37 @@
                 </div>
 
                 <div id="포인트적립"> </div>
+
+<!--건드리는중-->
+                <div id="w_간편결제">
+                    <div id="w_간편결제_top">
+                        <div>간편 결제</div>
+                        <div onclick="close_w_간편결제()">X</div>
+                    </div>
+                    <div id="wp_block">
+                        <div>이용하실 간편결제를 선택해주세요</div>
+                    </div>
+                    <div id="Pay_bottom">
+                        <div id="카카오페이" onclick="kakaoPay()"><br></div>
+                        <div id="페이코" onclick="payco()"><br></div>
+                        <div id="토스페이" onclick="tossPay()"><br></div>
+                        
+                    </div>
+                    <div id="w_list">
+                        <div id="pay_amount">  <!-- 배경색 줄까말까-->
+                            <div>총 결제금액</div>
+                            <div id="w_간편결제_total_price"></div>
+                        </div>
+                        
+                       
+                    </div>
+                    <div id="w_bottom">
+                        <div id="간편_돌아가기" onclick="back_window_btn()">돌아가기</div>
+                        <div id="취소" onclick="close_w_간편결제()">취소</div>
+                    </div>
+                </div> 
+<!--건드리는중-->
+
 
                 <div id="w_카드결제">
                     <div id="w_카드결제_top">
