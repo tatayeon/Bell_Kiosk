@@ -17,6 +17,7 @@ def landing(requset, pk):
         requset,
         "lgcon/index.html",
         {   
+            "pk" : pk,
             "PG" : PG,
             "menu" : menu_names,
             "category" : category
