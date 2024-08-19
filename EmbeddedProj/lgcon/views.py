@@ -1,5 +1,11 @@
 from django.shortcuts import render
 from .models import Menu, Order, Category
+import environ
+
+env = environ.Env()
+environ.Env.read_env() 
+
+PG = env("PG")
 
 # Create your views here.
 def landing(requset, pk):
@@ -10,7 +16,8 @@ def landing(requset, pk):
     return render(
         requset,
         "lgcon/index.html",
-        {
+        {   
+            "PG" : PG,
             "menu" : menu_names,
             "category" : category
         }

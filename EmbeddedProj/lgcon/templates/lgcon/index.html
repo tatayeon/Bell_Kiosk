@@ -29,7 +29,7 @@
                 <div id="mega_order">
                     <div id="top_bar">
                         <div id="mega_top_bar_home" onclick="herf_home()"></div>
-                        <div id="mega_top_bar_name">상명대학교 키오스크</div>
+                        <div id="mega_top_bar_name">상명대학교 키오스크{{PG}}</div>
                         <div id="mega_top_bar_lang">LANG</div>
                         <!-- <div>{{menu}}</div> -->
                         
@@ -420,7 +420,7 @@
                         <div>이용하실 간편결제를 선택해주세요</div>
                     </div>
                     <div id="Pay_bottom">
-                        <div id="카카오페이" onclick="kakaoPay()"><br></div>
+                        <div id="카카오페이" data-pg="{{PG}}" onclick="kakaoPay(this)"><br></div>
                         <div id="페이코" onclick="payco()"><br></div>
                         <div id="토스페이" onclick="tossPay()"><br></div>
                         
