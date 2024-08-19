@@ -576,7 +576,13 @@ body {
     justify-content: space-around;
 }
 
-#페이코 {
+/* |ㅡㅡㅡ  건드리는중*/
+#간편_돌아가기 {
+    width: 35%;
+    background: #595959;
+}
+
+#간편결제 {
     width: 23%;
     height: 55%;
     display: none;
@@ -584,6 +590,91 @@ body {
     color: red;
     border: solid red 1px;
 }
+#w_간편결제 {
+    margin-top: 15%;
+    margin-left: 5%;
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    top: 0;
+    background: white;    
+}
+#w_간편결제_top {
+    background: #ef4444;
+    width: 100%;
+    height: 7%;
+    font: bold 15px white;
+    display: flex;
+    justify-content: space-between;
+    row-gap: 50px;
+    color: white;
+}
+#w_간편결제_top div {
+    margin-top: 3%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#wp_block {
+    width: 90%;
+    height: 9%;
+    margin-left: 5%;
+    margin-top: 13%;
+    font-size: 13px;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+
+}
+#wp_block div {
+    display: flex;
+    justify-content: center;
+}
+
+#Pay_bottom {
+    width: 90%;
+    height: 25%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5%;
+    padding-top: 1%;
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+}
+#Pay_bottom div{
+    border-radius: 5px;
+    line-height: 160%;
+}
+
+#pay_amount {
+    background: lightgrey;
+}
+
+#페이코 {
+    width: 33%;
+    height: 55%;
+    background: url(img/페이코.png) no-repeat center / cover;
+    margin: 5px;
+}
+#카카오페이 {
+    width: 33%;
+    height: 55%;
+    background: url(img/카카오페이.png) no-repeat center / cover;
+    margin: 5px;
+
+}
+#토스페이 {
+    width: 33%;
+    height: 55%;
+    background: url(img/토스페이.png) no-repeat center / cover;
+    margin: 5px;
+    border: 2px solid navy;
+
+}
+
+/*건드리는중  ____|   */
+
 #카드결제 {
     width: 23%;
     height: 55%;
@@ -725,6 +816,9 @@ body {
     display: none;
 }
 #screen_to_window_pay {
+    display: none;
+}
+#w_간편결제 {
     display: none;
 }
 #w_카드결제 {

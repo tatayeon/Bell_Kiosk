@@ -172,7 +172,7 @@ function deleteItem(index) {
 // 주문 항목 테두리 초기화 함수
 function resetItemBorder(id) {
     var drink = document.getElementById(id);
-    if (drink) {
+    if (소주) {
         drink.style.borderStyle = 'none';
     }
 }
@@ -294,7 +294,7 @@ function open_window_pay () {
 
     document.getElementById("돌아가기_2").style.display = 'none';
     document.getElementById("쿠폰사용").style.display = 'none';
-    document.getElementById("페이코").style.display = 'none';
+    document.getElementById("간편결제").style.display = 'none';
     document.getElementById("카드결제").style.display = 'none';
     
 
@@ -332,7 +332,7 @@ function change_window_btn() {
 
     document.getElementById("돌아가기_2").style.display = 'block';
     document.getElementById("쿠폰사용").style.display = 'block';
-    document.getElementById("페이코").style.display = 'block';
+    document.getElementById("간편결제").style.display = 'block';
     document.getElementById("카드결제").style.display = 'block';
     
 }
@@ -344,9 +344,41 @@ function back_2_window_btn() {
 
     document.getElementById("돌아가기_2").style.display = 'none';
     document.getElementById("쿠폰사용").style.display = 'none';
-    document.getElementById("페이코").style.display = 'none';
+    document.getElementById("간편결제").style.display = 'none';
     document.getElementById("카드결제").style.display = 'none';
 }
+
+function back_window_btn() {
+    //안함
+
+}
+
+// 건드리는중
+function open_w_간편결제() {
+    document.getElementById("w_간편결제").style.display = 'block';
+    document.getElementById("window_pay").style.display = 'none';
+    document.getElementById("w_간편결제_total_price").innerText = total_list[1]+"원";
+
+    
+    
+}
+
+function open_w_간편결제() {
+    document.getElementById("w_간편결제").style.display = 'block';
+    document.getElementById("window_pay").style.display = 'none';
+    document.getElementById("w_간편결제_total_price").innerText = total_list[1]+"원";
+
+
+}
+
+function close_w_간편결제() {
+    document.getElementById("w_간편결제").style.display = 'none';
+    document.getElementById("screen_to_window_pay").style.display = 'none';
+
+
+}
+
+// 건드리는중
 
 function open_w_카드결제() {
     document.getElementById("w_카드결제").style.display = 'block';
