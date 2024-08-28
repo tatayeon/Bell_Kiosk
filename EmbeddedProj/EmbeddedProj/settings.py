@@ -10,11 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+from importlib.metadata import requires
 from pathlib import Path
 import os
-
+from dotenv import load_dotenv
+from pathlib import Path
+import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+PG = env("PG")
+DB_NAME = env("DB_NAME")
 
 
 # Quick-start development settings - unsuitable for production
@@ -66,7 +77,7 @@ ROOT_URLCONF = 'EmbeddedProj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,11 +99,11 @@ WSGI_APPLICATION = 'EmbeddedProj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'skrr',
-        'USER': 'root',
-        'PASSWORD': '2465',
+        'NAME': "skrr",
+        'USER': "root",
+        'PASSWORD': "root",
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '3305',
     }
 }
 
