@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lgcon',
+    'orders',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +52,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+# 모든 도메인에서의 CORS 허용 (개발 환경에서만 사용할 것)
+CORS_ALLOW_ALL_ORIGINS = True
+
+# CSRF 설정 (필요한 경우)
+# CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
 
 ROOT_URLCONF = 'EmbeddedProj.urls'
 
