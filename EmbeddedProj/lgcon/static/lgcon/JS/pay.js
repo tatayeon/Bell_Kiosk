@@ -1,3 +1,5 @@
+// pay.js
+
 var IMP = window.IMP;
 // var pgValue = element.getAttribute('data-pg');
 // IMP.init(pgValue); // 고객사 식별코드
@@ -14,9 +16,13 @@ var makeMerchantUid = hours + minutes + seconds + milliseconds;
 var customer_id = 'CUST-' + Date.now(); // 실제 고객 ID로 대체 필요
 var customer_uid = 'UID-' + Math.random().toString(36).substr(2, 16); // 실제 고객 UID로 대체 필요
 
-function kakaoPay(element) {
-    var pgValue = element.getAttribute('data-pg');
-    IMP.init(pgValue); // 고객사 식별코드
+function getCSRFToken() {
+    // CSRF 토큰을 쿠키에서 읽어옵니다
+    const token = document.cookie.split('; ').find(row => row.startsWith('csrftoken=')).split('=')[1];
+    return token;
+}
+
+function kakaoPay() {
     IMP.request_pay({
         pg: 'kakaopay', // PG사 코드표에서 선택
         pay_method: 'card', // 결제 방식
@@ -33,13 +39,31 @@ function kakaoPay(element) {
     }, function (rsp) { // callback
         if (rsp.success) {
             alert('결제가 성공적으로 완료되었습니다.');
-            console.log(rsp);
+            fetch("http://127.0.0.1:8000/orders/api/order-data/", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken() // CSRF 토큰 추가
+                },
+                body: JSON.stringify({
+                    order_list: order_list, // 올바른 형식으로 설정
+                    current_url: window.location.href // 필드 이름이 맞는지 확인
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         } else {
             alert('결제에 실패하였습니다. ' + rsp.error_msg);
             console.log(rsp);
         }
     });
 }
+
 
 function tossPay() {
     var pgValue = element.getAttribute('data-pg');

@@ -276,8 +276,6 @@ function clear_order_list() {
     total_list[0] = 0;
     total_list[1] = 0;
 }
-
-
 /*결제 창*/
 function open_window_pay () {
 
