@@ -30,13 +30,11 @@ class Menu(models.Model):
 
 
 class Order(models.Model):
-    Order_at = models.DateTimeField(auto_now=True)
 
-    order_name = models.CharField(max_length=30)
+    order_name = models.CharField(max_length=100)
+
+    quantity = models.CharField(max_length=100)
 
     price = models.IntegerField()
 
-    quantity = models.IntegerField()
-
-    bell_number = models.IntegerField()
-
+    Order_at = models.DateTimeField(auto_now_add= True)

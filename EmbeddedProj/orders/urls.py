@@ -5,5 +5,5 @@ from .views import order_list_view
 
 urlpatterns = [
     path('api/order-data/', OrderDataAPIView.as_view(), name='order-data'),
-    path('orders/', order_list_view, name='order-list'),
+    path('', order_list_view, name='order-list'),
 ]

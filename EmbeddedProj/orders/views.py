@@ -21,17 +21,20 @@ def order_list_view(request):
 
     for order in orders:
         items = []
-        # `order_list`는 JSON 형식으로 되어 있어야 하며, 아래와 같은 형식입니다.
-        for item in order.order_list:  # 각 항목은 딕셔너리 형태입니다.
+        # 각 항목은 JSON 형식의 딕셔너리 형태로 가정합니다.
+        for item in order.order_list:  # order_list는 JSON 형식이어야 합니다.
             items.append({
                 'name': item.get('name'),
                 'price': item.get('price'),
                 'number': item.get('number'),
             })
+        
         order_details.append({
             'id': order.id,
             'items': items,
             'current_url': order.current_url,
+            'order_type': order.takeout_option,  # "먹고가기" 또는 "가져가기"
+            'total_amount': order.total_price,  # 최종금액
             'created_at': order.created_at,
         })
 

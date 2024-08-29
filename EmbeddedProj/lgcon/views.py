@@ -1,8 +1,15 @@
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from .models import Menu, Order, Category
 import requests
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+PG = env("PG")
 
 
 # Create your views here.

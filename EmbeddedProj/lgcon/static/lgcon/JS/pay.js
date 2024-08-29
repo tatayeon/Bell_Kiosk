@@ -1,9 +1,5 @@
-// pay.js
-
 var IMP = window.IMP;
-// var pgValue = element.getAttribute('data-pg');
-// IMP.init(pgValue); // 고객사 식별코드
-// console.log(PG);
+IMP.init("--"); // 고객사 식별코드
 
 var today = new Date();
 var hours = today.getHours(); // 시
@@ -47,7 +43,9 @@ function kakaoPay() {
                 },
                 body: JSON.stringify({
                     order_list: order_list, // 올바른 형식으로 설정
-                    current_url: window.location.href // 필드 이름이 맞는지 확인
+                    current_url: window.location.href, // 필드 이름이 맞는지 확인
+                    total_price: total_list[1], // 최종 금액 추가
+                    takeout_option: takeoutOption, // 먹고가기 or 가져가기 옵션 추가
                 }),
             })
             .then(response => response.json())
@@ -66,8 +64,6 @@ function kakaoPay() {
 
 
 function tossPay() {
-    var pgValue = element.getAttribute('data-pg');
-    IMP.init(pgValue); // 고객사 식별코드
     IMP.request_pay({
         pg: 'tosspay', // PG사 코드표에서 선택
         pay_method: 'tosspay', // 결제 방식
@@ -93,8 +89,6 @@ function tossPay() {
 }
 
 function payco() {
-    var pgValue = element.getAttribute('data-pg');
-    IMP.init(pgValue); // 고객사 식별코드
     IMP.request_pay({
         pg: 'payco', // PG사 코드표에서 선택
         pay_method: 'payco', // 결제 방식

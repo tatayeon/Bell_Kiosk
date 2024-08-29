@@ -276,7 +276,14 @@ function clear_order_list() {
     total_list[0] = 0;
     total_list[1] = 0;
 }
-/*결제 창*/
+var takeoutOption = ""; // 선택된 옵션을 저장할 변수
+
+function chooseOption(option) {
+    takeoutOption = option;
+    change_window_btn(); // 선택 후 버튼 변경
+}
+
+/*결제창*/
 function open_window_pay () {
 
     document.getElementById("window_pay").style.display = 'block';
@@ -287,8 +294,8 @@ function open_window_pay () {
     document.getElementById("w_total_price").innerText =total_list[1];
     
     document.getElementById("돌아가기").style.display = 'block';
-    document.getElementById("먹고가기").style.display = 'block';
-    document.getElementById("가져가기").style.display = 'block';
+    document.getElementById("먹고가기").onclick = function() { chooseOption("먹고가기"); };
+    document.getElementById("가져가기").onclick = function() { chooseOption("가져가기"); };
 
     document.getElementById("돌아가기_2").style.display = 'none';
     document.getElementById("쿠폰사용").style.display = 'none';
