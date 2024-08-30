@@ -19,7 +19,6 @@
         {% csrf_token %}
     </form>
 
-
     <div class="kiosk_simulation">  
 
         <div class="kiosk_mega_backdround">
@@ -35,9 +34,9 @@
                 <div id="mega_order">
                     <div id="top_bar">
 
-                        <div id="mega_top_bar_home" onclick="herf_home()"></div>
+                        <div id="mega_top_bar_home" bell_num= "{{ pk }}" onclick="href_home(this)"></div>
                         <div id="mega_top_bar_name">상명대학교 키오스크</div>
-                        <div id="mega_top_bar_lang">LANG</div>
+                        <div id="mega_top_bar_lang">SMU+</div>
                         <!-- <div>{{menu}}</div> -->
                         
                     </div>

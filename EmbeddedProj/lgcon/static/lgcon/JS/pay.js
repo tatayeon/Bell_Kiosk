@@ -1,5 +1,5 @@
 var IMP = window.IMP;
-IMP.init("--"); // 고객사 식별코드
+IMP.init("imp04733356"); // 고객사 식별코드
 
 var today = new Date();
 var hours = today.getHours(); // 시
@@ -66,7 +66,7 @@ function kakaoPay() {
 function tossPay() {
     IMP.request_pay({
         pg: 'tosspay', // PG사 코드표에서 선택
-        pay_method: 'tosspay', // 결제 방식
+        pay_method: 'card', // 결제 방식
         merchant_uid: "IMP" + makeMerchantUid, // 결제 고유 번호
         name: '상명대학교 카페', // 제품명
         amount: total_list[1], // 가격s
@@ -75,12 +75,32 @@ function tossPay() {
         buyer_tel: '010-1234-5678',
         buyer_addr: '충청남도 천안시 동남구 상명대길 31',
         buyer_postcode: '123-456',
+        m_redirect_url: "http//127.0.0.1:8000/1",
         customer_uid: customer_uid, // 고객 UID
-        customer_id: customer_id  // 고객 ID
+        customer_id: customer_id,  // 고객 ID
     }, function (rsp) { // callback
         if (rsp.success) {
             alert('결제가 성공적으로 완료되었습니다.');
-            console.log(rsp);
+            fetch("http://127.0.0.1:8000/orders/api/order-data/", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken() // CSRF 토큰 추가
+                },
+                body: JSON.stringify({
+                    order_list: order_list, // 올바른 형식으로 설정
+                    current_url: window.location.href, // 필드 이름이 맞는지 확인
+                    total_price: total_list[1], // 최종 금액 추가
+                    takeout_option: takeoutOption, // 먹고가기 or 가져가기 옵션 추가
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         } else {
             alert('결제에 실패하였습니다. ' + rsp.error_msg);
             console.log(rsp);

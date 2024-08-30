@@ -276,6 +276,7 @@ function clear_order_list() {
     total_list[0] = 0;
     total_list[1] = 0;
 }
+
 var takeoutOption = ""; // 선택된 옵션을 저장할 변수
 
 function chooseOption(option) {
@@ -283,7 +284,8 @@ function chooseOption(option) {
     change_window_btn(); // 선택 후 버튼 변경
 }
 
-/*결제창*/
+
+/*결제 창*/
 function open_window_pay () {
 
     document.getElementById("window_pay").style.display = 'block';
@@ -308,7 +310,7 @@ function open_window_pay () {
 function close_window_pay () {
     document.getElementById("window_pay").style.display = 'none';
     document.getElementById("screen_to_window_pay").style.display  = 'none';
-
+    back_2_window_btn();
 }
 
 function write_order_list_window_pay(order_list) {
@@ -354,33 +356,23 @@ function back_2_window_btn() {
 }
 
 function back_window_btn() {
-    //안함
+    document.getElementById("w_간편결제").style.display = 'none';
+    document.getElementById("window_pay").style.display = 'block';
+    document.getElementById("screen_to_window_pay").style.display  = 'block';
+    back_2_window_btn();
 
-}
-
-// 건드리는중
-function open_w_간편결제() {
-    document.getElementById("w_간편결제").style.display = 'block';
-    document.getElementById("window_pay").style.display = 'none';
-    document.getElementById("w_간편결제_total_price").innerText = total_list[1]+"원";
-
-    
-    
 }
 
 function open_w_간편결제() {
     document.getElementById("w_간편결제").style.display = 'block';
     document.getElementById("window_pay").style.display = 'none';
     document.getElementById("w_간편결제_total_price").innerText = total_list[1]+"원";
-
-
 }
 
 function close_w_간편결제() {
     document.getElementById("w_간편결제").style.display = 'none';
     document.getElementById("screen_to_window_pay").style.display = 'none';
-
-
+    back_2_window_btn();
 }
 
 // 건드리는중
@@ -398,7 +390,7 @@ function close_w_카드결제() {
     document.getElementById("w_카드결제").style.display = 'none';
     document.getElementById("screen_to_window_pay").style.display = 'none';
     document.getElementById("insert_card_moving").style.display = 'none';
-
+    back_2_window_btn();
 }
 
 function 결제완료() {
@@ -406,20 +398,8 @@ function 결제완료() {
     location.href = "http://127.0.0.1:8000/1";
 }
 
-function herf_home(element) {
-    if (!element) {
-        console.error('Element is not defined.');
-        return;
-    }
-    
-    var bell_num = element.getAttribute('bell_num');
-    if (!bell_num) {
-        console.error('bell_num attribute is not found.');
-        return;
-    }
-
-    var url = "http://127.0.0.1:8000/" + encodeURIComponent(bell_num);
-    location.href = url;
+function herf_home() {
+    location.href = "http://127.0.0.1:8000/1";
 }
 
 
